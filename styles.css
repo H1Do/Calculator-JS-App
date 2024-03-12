@@ -1,0 +1,314 @@
+@import url('./styles/normalize.css');
+@import url('./styles/fonts.css');
+
+html {
+  /* Layout */
+  --mobile-width: 375px;
+  --desktop-width: var(--desktop-width);
+
+  /* Theme 1 Colors */
+  --main-background: hsl(222, 26%, 31%);
+  --toggle-keypad-background: hsl(223, 31%, 20%);
+  --screen-background: hsl(224, 36%, 15%);
+  --dark-blue: hsl(225, 21%, 49%);
+  --dark-blue-shadow: hsl(224, 28%, 35%);
+  --dark-blue-hover: hsl(225, 29%, 70%);
+  --red: hsl(6, 63%, 50%);
+  --red-shadow: hsl(6, 70%, 34%);
+  --red-hover: hsl(6, 53%, 57%);
+  --light-grayish-orange: hsl(30, 25%, 89%);
+  --grayish-orange-shadow: hsl(28, 16%, 65%);
+  --very-dark-grayish-blue: hsl(221, 14%, 31%);
+  --white: hsl(0, 0%, 100%);
+
+  /* Theme 2 Colors */
+  --main-background2: hsl(0, 0%, 90%);
+  --toggle-keypad-background2: hsl(0, 5%, 81%);
+  --screen-background2: hsl(0, 0%, 93%);
+  --dark-blue2: hsl(185, 42%, 37%);
+  --dark-blue-shadow2: hsl(185, 58%, 25%);
+  --orange2: hsl(25, 98%, 40%);
+  --orange-shadow2: hsl(25, 99%, 27%);
+  --light-grayish-yellow2: hsl(45, 7%, 89%);
+  --dark-grayish-orange-shadow2: hsl(35, 11%, 61%);
+  --very-dark-grayish-yellow2: hsl(60, 10%, 19%);
+
+  /* Theme 3 Colors */
+  --main-background3: hsl(268, 75%, 9%);
+  --toggle-keypad-screen-background3: hsl(268, 71%, 12%);
+  --dark-blue3: hsl(281, 89%, 26%);
+  --vivid-magenta3: hsl(285, 91%, 52%);
+  --pure-cyan3: hsl(176, 100%, 44%);
+  --soft-cyan3: hsl(177, 92%, 70%);
+  --very-dark-violet3: hsl(268, 47%, 21%);
+  --dark-magenta3: hsl(290, 70%, 36%);
+  --light-yellow3: hsl(52, 100%, 62%);
+  --very-dark-blue3: hsl(198, 20%, 13%);
+
+  --font-size: 32px;
+  --font-weight: 700;
+  --transition-duration: 0.2s;
+
+  font-family: 'League Spartan';
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+
+  background-color: var(--main-background);
+}
+
+* {
+  transition: background-color var(--transition-duration);
+  line-height: 1;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  max-width: var(--desktop-width);
+  margin: 0 auto;
+
+  height: 100svh;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+}
+
+.calculator__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  color: var(--white);
+}
+
+.calculator__title {
+  font-size: var(--font-size);
+}
+
+.calculator__theme {
+  display: flex;
+  column-gap: 20px;
+  align-items: end;
+
+  font-size: 0.35rem;
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+.calculator__theme-headline {
+  padding-bottom: 10px;
+}
+
+.calculator__theme-action {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+}
+
+.calculator__theme-states {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 10px;
+  text-align: center;
+}
+
+.calculator__theme-switcher {
+  display: flex;
+  column-gap: 5px;
+
+  background-color: var(--toggle-keypad-background);
+  padding: 5px;
+  border-radius: 20px;
+}
+
+.calculator__theme-switcher input {
+  display: none;
+}
+
+.calculator__theme-switcher label {
+  display: block;
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.calculator__theme-switcher input:checked+label {
+  background-color: var(--red);
+}
+
+.calculator__output {
+  background-color: var(--screen-background);
+  color: var(--white);
+  font-size: clamp(1.2rem, calc(56 / 1440 * 100vw), 1.75rem);
+  text-align: right;
+  padding: 35px 30px 25px 30px;
+  border-radius: 10px;
+}
+
+.calculator__buttons {
+  display: grid;
+  grid-template-areas: 'seven eight nine del'
+    'four five six plus'
+    'one two three minus'
+    'dot zero divide multiply'
+    'reset reset equal equal';
+
+  justify-content: center;
+
+  gap: clamp(15px, calc(25 / 1440 * 100vw), 25px) clamp(10px, calc(20 / 1440 * 100vw), 20px);
+
+  padding: 30px;
+
+  background-color: var(--toggle-keypad-background);
+  border-radius: 10px;
+}
+
+.calculator__button {
+  border-radius: 5px;
+  border: none;
+  min-width: clamp(60px, calc(100 / 1440 * 100vw), 100px);
+  padding-block: 16px 8px;
+
+  box-shadow: 0 5px 0 0 var(--grayish-orange-shadow);
+  background-color: var(--light-grayish-orange);
+  color: var(--very-dark-grayish-blue);
+
+  cursor: pointer;
+}
+
+.calculator__button-del,
+.calculator__button-reset {
+  box-shadow: 0 5px 0 0 var(--dark-blue-shadow);
+  background-color: var(--dark-blue);
+  color: var(--light-grayish-orange);
+  font-size: 0.7rem;
+}
+
+.calculator__button-equal {
+  box-shadow: 0 5px 0 0 var(--red-shadow);
+  background-color: var(--red);
+  color: var(--light-grayish-orange);
+}
+
+.calculator__button-one {
+  grid-area: one;
+}
+
+.calculator__button-two {
+  grid-area: two;
+}
+
+.calculator__button-three {
+  grid-area: three;
+}
+
+.calculator__button-four {
+  grid-area: four;
+}
+
+.calculator__button-five {
+  grid-area: five;
+}
+
+.calculator__button-six {
+  grid-area: six;
+}
+
+.calculator__button-seven {
+  grid-area: seven;
+}
+
+.calculator__button-eight {
+  grid-area: eight;
+}
+
+.calculator__button-nine {
+  grid-area: nine;
+}
+
+.calculator__button-zero {
+  grid-area: zero;
+}
+
+.calculator__button-dot {
+  grid-area: dot;
+}
+
+.calculator__button-equal {
+  grid-area: equal;
+}
+
+.calculator__button-plus {
+  grid-area: plus;
+}
+
+.calculator__button-minus {
+  grid-area: minus;
+}
+
+.calculator__button-multiply {
+  grid-area: multiply;
+}
+
+.calculator__button-divide {
+  grid-area: divide;
+}
+
+.calculator__button-del {
+  grid-area: del;
+}
+
+.calculator__button-reset {
+  grid-area: reset;
+}
+
+@media (hover: hover) {
+  .calculator__theme-switcher input:checked+label:hover {
+    background-color: var(--red-hover);
+  }
+
+  .calculator__button:hover {
+    background-color: var(--white);
+  }
+
+  :is(.calculator__button-del, .calculator__button-reset):hover {
+    background-color: var(--dark-blue-hover);
+  }
+
+  .calculator__button-equal:hover {
+    background-color: var(--red-hover);
+  }
+}
+
+@media (hover: none) {
+  .calculator__theme-switcher input:checked+label:active {
+    background-color: var(--red-hover);
+  }
+
+  .calculator__button:active {
+    background-color: var(--white);
+  }
+
+  :is(.calculator__button-del, .calculator__button-reset):active {
+    background-color: var(--dark-blue-hover);
+  }
+
+  .calculator__button-equal:active {
+    background-color: var(--red-hover);
+  }
+}
