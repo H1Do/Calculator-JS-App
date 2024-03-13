@@ -73,7 +73,11 @@ function handleClick(event, { currentValue, prevValue, currentOperation, isFloat
 }
 
 function screenRender(screenElement, { currentValue }) {
-  screenElement.textContent = currentValue;
+  if (currentValue.length > 12) {
+    screenElement.textContent = Number(currentValue).toExponential(7);
+  } else {
+    screenElement.textContent = currentValue;
+  }
 }
 
 function isInt(number) {
