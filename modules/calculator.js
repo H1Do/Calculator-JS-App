@@ -3,11 +3,10 @@ export function initCalculator() {
   const calculatorScreen = document.querySelector('.calculator__output');
 
   let calculatorState = {
-    currentValue: 0,
-    prevValue: 0,
+    currentValue: '0',
+    prevValue: '0',
     currentOperation: '',
     isFloat: false,
-    isDotAppearing: false,
   }
 
   calculatorButtons.addEventListener('click', function (event) {
@@ -16,79 +15,65 @@ export function initCalculator() {
   })
 }
 
-function handleClick(event, { currentValue, prevValue, currentOperation, isFloat, isDotAppearing }) {
-  if (!isNaN(event.target.value)) {
-    if (isDotAppearing) {
-      currentValue = currentValue + Number(event.target.value) / 10;
-      isDotAppearing = false;
-      isFloat = true;
-    } else if (isFloat) {
-      currentValue = Number(String(currentValue) + event.target.value);
-    } else {
-      currentValue = currentValue * 10 + Number(event.target.value);
-    }
-  } else {
-    switch (event.target.value) {
-      case 'DEL':
-        if (isFloat) {
-          if (String(currentValue).at(-2) === '.') {
-            isFloat = false;
-          }
-          currentValue = Number(String(currentValue).slice(0, -1));
-        } else {
-          currentValue = Math.trunc(currentValue / 10);
-        }
-        break;
-      case 'RESET':
-        currentValue = 0;
-        prevValue = 0;
-        currentOperation = '';
+function handleClick(event, { currentValue, prevValue, currentOperation, isFloat }) {
+  switch (event.target.value) {
+    case '0':
+    case '1':
+    case '2':
+    case '3':
+    case '4':
+    case '5':
+    case '6':
+    case '7':
+    case '8':
+    case '9':
+      currentValue = (currentValue === '0' ? '' : currentValue) + event.target.value;
+      break;
+    case 'DEL':
+      if (currentValue.at(-1) === '.') {
         isFloat = false;
-        isDotAppearing = false;
-        break;
-      case '.':
-        if (!isFloat && !isDotAppearing) {
-          isDotAppearing = true;
-          isFloat = true;
-        }
-        break;
-      case '+':
-        prevValue = currentValue;
-        currentValue = 0;
-        currentOperation = '+';
-        break;
-      case '-':
-        prevValue = currentValue;
-        currentValue = 0;
-        currentOperation = '-';
-        break;
-      case '*':
-        prevValue = currentValue;
-        currentValue = 0;
-        currentOperation = '*';
-        break;
-      case '/':
-        prevValue = currentValue;
-        currentValue = 0;
-        currentOperation = '/';
-        break;
-      case '=':
-        currentValue = (currentOperation === '+') ? currentValue + prevValue :
-          (currentOperation === '-') ? prevValue - currentValue :
-            (currentOperation === '*') ? currentValue * prevValue :
-              (currentOperation === '/') ? prevValue / currentValue : currentValue;
-        if (!isInt(currentValue)) {
-          isFloat = true;
-        }
-        break;
-    }
+      }
+      currentValue = currentValue.slice(0, -1) || '0';
+      break;
+    case 'RESET':
+      currentValue = '0';
+      prevValue = '0';
+      currentOperation = '';
+      isFloat = false;
+      break;
+    case '.':
+      currentValue += !isFloat ? '.' : '';
+      isFloat = true;
+      break;
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+      prevValue = currentValue;
+      currentValue = '0';
+      currentOperation = event.target.value;
+      isFloat = false;
+      break;
+    case '=':
+      let current = Number(currentValue);
+      let prev = Number(prevValue);
+
+      currentValue = String((currentOperation === '+') ? current + prev :
+        (currentOperation === '-') ? prev - current :
+          (currentOperation === '*') ? current * prev :
+            (currentOperation === '/') ? prev / current : current);
+
+      isFloat = !isInt(Number(currentValue));
+      currentOperation = '';
+      prevValue = '0';
+      break;
   }
-  return { currentValue, prevValue, currentOperation, isFloat, isDotAppearing };
+
+  return { currentValue, prevValue, currentOperation, isFloat };
 }
 
-function screenRender(screenElement, { currentValue, isDotAppearing }) {
-  screenElement.textContent = (String(currentValue) + (isDotAppearing ? '.' : ''));
-  console.log(isDotAppearing);
+function screenRender(screenElement, { currentValue }) {
+  screenElement.textContent = currentValue;
 }
 
 function isInt(number) {

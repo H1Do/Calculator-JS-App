@@ -3,8 +3,8 @@
 
 html {
   /* Layout */
-  --mobile-width: 375px;
-  --desktop-width: var(--desktop-width);
+  --mobile-width: 375;
+  --desktop-width: 1440;
 
   /* Theme 1 Colors */
   --main-background: hsl(222, 26%, 31%);
@@ -62,8 +62,11 @@ html {
 }
 
 .attribution {
+  position: absolute;
   font-size: 11px;
   text-align: center;
+  bottom: 0px;
+  width: 100%;
 }
 
 .attribution a {
@@ -75,7 +78,7 @@ html {
   justify-content: center;
   align-items: center;
 
-  max-width: var(--desktop-width);
+  max-width: calc(var(--desktop-width) * 1px);
   margin: 0 auto;
 
   height: 100svh;
@@ -154,7 +157,7 @@ html {
 .calculator__output {
   background-color: var(--screen-background);
   color: var(--white);
-  font-size: clamp(1.2rem, calc(56 / 1440 * 100vw), 1.75rem);
+  font-size: clamp(1.2rem, calc(56 / var(--desktop-width) * 100vw), 1.75rem);
   text-align: right;
   padding: 35px 30px 25px 30px;
   border-radius: 10px;
@@ -170,7 +173,7 @@ html {
 
   justify-content: center;
 
-  gap: clamp(15px, calc(25 / 1440 * 100vw), 25px) clamp(10px, calc(20 / 1440 * 100vw), 20px);
+  gap: clamp(15px, calc(25 / var(--desktop-width) * 100vw), 25px) clamp(10px, calc(20 / var(--desktop-width) * 100vw), 20px);
 
   padding: 30px;
 
@@ -181,7 +184,7 @@ html {
 .calculator__button {
   border-radius: 5px;
   border: none;
-  min-width: clamp(60px, calc(100 / 1440 * 100vw), 100px);
+  min-width: clamp(60px, calc(100 / var(--desktop-width) * 100vw), 100px);
   padding-block: 16px 8px;
 
   box-shadow: 0 5px 0 0 var(--grayish-orange-shadow);
