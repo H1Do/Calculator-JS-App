@@ -58,10 +58,10 @@ function handleClick(event, { currentValue, prevValue, currentOperation, isFloat
       let current = Number(currentValue);
       let prev = Number(prevValue);
 
-      currentValue = String((currentOperation === '+') ? current + prev :
+      currentValue = String(((currentOperation === '+') ? current + prev :
         (currentOperation === '-') ? prev - current :
           (currentOperation === '*') ? current * prev :
-            (currentOperation === '/') ? prev / current : current);
+            (currentOperation === '/') ? prev / current : current));
 
       isFloat = !isInt(Number(currentValue));
       currentOperation = '';
@@ -76,10 +76,22 @@ function screenRender(screenElement, { currentValue }) {
   if (currentValue.length > 10) {
     screenElement.textContent = Number(currentValue).toExponential(7);
   } else {
-    screenElement.textContent = currentValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    screenElement.textContent = addCommasToFloat(currentValue);
   }
 }
 
 function isInt(number) {
   return Number(number) === number && number % 1 === 0;
+}
+
+function addCommasToFloat(number) {
+  const parts = number.toString().split(".");
+
+  const integerPartWithCommas = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  if (parts.length === 2) {
+    return integerPartWithCommas + "." + parts[1];
+  } else {
+    return integerPartWithCommas;
+  }
 }
