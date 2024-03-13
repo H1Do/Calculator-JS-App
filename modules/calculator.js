@@ -73,10 +73,10 @@ function handleClick(event, { currentValue, prevValue, currentOperation, isFloat
 }
 
 function screenRender(screenElement, { currentValue }) {
-  if (currentValue.length > 12) {
+  if (currentValue.length > 10) {
     screenElement.textContent = Number(currentValue).toExponential(7);
   } else {
-    screenElement.textContent = currentValue;
+    screenElement.textContent = currentValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 }
 
