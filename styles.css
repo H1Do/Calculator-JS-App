@@ -1,58 +1,94 @@
 @import url('./styles/normalize.css');
 @import url('./styles/fonts.css');
 
-html {
-  /* Layout */
+:root {
   --mobile-width: 375;
   --desktop-width: 1440;
-
-  /* Theme 1 Colors */
-  --main-background: hsl(222, 26%, 31%);
-  --toggle-keypad-background: hsl(223, 31%, 20%);
-  --screen-background: hsl(224, 36%, 15%);
-  --dark-blue: hsl(225, 21%, 49%);
-  --dark-blue-shadow: hsl(224, 28%, 35%);
-  --dark-blue-hover: hsl(225, 29%, 70%);
-  --red: hsl(6, 63%, 50%);
-  --red-shadow: hsl(6, 70%, 34%);
-  --red-hover: hsl(6, 53%, 57%);
-  --light-grayish-orange: hsl(30, 25%, 89%);
-  --grayish-orange-shadow: hsl(28, 16%, 65%);
-  --very-dark-grayish-blue: hsl(221, 14%, 31%);
-  --white: hsl(0, 0%, 100%);
-
-  /* Theme 2 Colors */
-  --main-background2: hsl(0, 0%, 90%);
-  --toggle-keypad-background2: hsl(0, 5%, 81%);
-  --screen-background2: hsl(0, 0%, 93%);
-  --dark-blue2: hsl(185, 42%, 37%);
-  --dark-blue-shadow2: hsl(185, 58%, 25%);
-  --orange2: hsl(25, 98%, 40%);
-  --orange-shadow2: hsl(25, 99%, 27%);
-  --light-grayish-yellow2: hsl(45, 7%, 89%);
-  --dark-grayish-orange-shadow2: hsl(35, 11%, 61%);
-  --very-dark-grayish-yellow2: hsl(60, 10%, 19%);
-
-  /* Theme 3 Colors */
-  --main-background3: hsl(268, 75%, 9%);
-  --toggle-keypad-screen-background3: hsl(268, 71%, 12%);
-  --dark-blue3: hsl(281, 89%, 26%);
-  --vivid-magenta3: hsl(285, 91%, 52%);
-  --pure-cyan3: hsl(176, 100%, 44%);
-  --soft-cyan3: hsl(177, 92%, 70%);
-  --very-dark-violet3: hsl(268, 47%, 21%);
-  --dark-magenta3: hsl(290, 70%, 36%);
-  --light-yellow3: hsl(52, 100%, 62%);
-  --very-dark-blue3: hsl(198, 20%, 13%);
 
   --font-size: 32px;
   --font-weight: 700;
   --transition-duration: 0.2s;
 
+  --white: hsl(0, 0%, 100%);
+}
+
+.theme1 {
+  --main-background: hsl(222, 26%, 31%);
+  --toggle-keypad-background: hsl(223, 31%, 20%);
+  --screen-background: hsl(224, 36%, 15%);
+
+  --dark-key-background: hsl(225, 21%, 49%);
+  --dark-key-background-shadow: hsl(224, 28%, 35%);
+  --dark-key-background-hover: hsl(225, 29%, 70%);
+
+  --special-key-background: hsl(6, 63%, 50%);
+  --special-key-background-shadow: hsl(6, 70%, 34%);
+  --special-key-background-hover: hsl(6, 53%, 57%);
+
+  --light-key-background: hsl(30, 25%, 89%);
+  --light-key-background-shadow: hsl(28, 16%, 65%);
+  --light-key-background-hover: hsl(0, 0%, 100%);
+
+  --main-font-color: hsl(221, 14%, 31%);
+  --second-font-color: hsl(0, 0%, 100%);
+}
+
+.theme2 {
+  --main-background: hsl(0, 0%, 90%);
+  --toggle-keypad-background: hsl(0, 5%, 81%);
+  --screen-background: hsl(0, 0%, 93%);
+
+  --dark-key-background: hsl(185, 42%, 37%);
+  --dark-key-background-shadow: hsl(185, 58%, 25%);
+  --dark-key-background-hover: hsl(185, 34%, 59%);
+  /* */
+
+  --special-key-background: hsl(25, 98%, 40%);
+  --special-key-background-shadow: hsl(25, 99%, 27%);
+  --special-key-background-hover: hsl(25, 82%, 55%);
+  /* */
+
+  --light-key-background: hsl(45, 7%, 89%);
+  --light-key-background-shadow: hsl(28, 16%, 65%);
+  --light-key-background-hover: hsl(0, 0%, 100%);
+  /* */
+
+  --main-font-color: hsl(60, 10%, 19%);
+  --second-font-color: hsl(0, 0%, 100%);
+}
+
+.theme3 {
+  --main-background: hsl(268, 75%, 9%);
+  --toggle-keypad-background: hsl(268, 71%, 12%);
+  --screen-background: hsl(268, 71%, 12%);
+
+  --dark-key-background: hsl(281, 89%, 26%);
+  --dark-key-background-shadow: hsl(285, 91%, 52%);
+  --dark-key-background-hover: hsl(281, 80%, 37%);
+  /* */
+
+  --special-key-background: hsl(176, 100%, 44%);
+  --special-key-background-shadow: hsl(177, 92%, 70%);
+  --special-key-background-hover: hsl(176, 100%, 76%);
+  /* */
+
+  --light-key-background: hsl(268, 47%, 21%);
+  --light-key-background-shadow: hsl(290, 70%, 36%);
+  --light-key-background-hover: hsl(268, 80%, 46%);
+  /* */
+
+  --main-font-color: hsl(52, 100%, 62%);
+  --second-font-color: hsl(0, 0%, 100%);
+  --third-font-color: hsl(198, 20%, 13%);
+}
+
+html {
   font-family: 'League Spartan';
   font-size: var(--font-size);
   font-weight: var(--font-weight);
+}
 
+body {
   background-color: var(--main-background);
 }
 
@@ -95,7 +131,7 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: end;
-  color: var(--white);
+  color: var(--second-font-color);
 }
 
 .calculator__title {
@@ -151,12 +187,12 @@ html {
 }
 
 .calculator__theme-switcher input:checked+label {
-  background-color: var(--red);
+  background-color: var(--special-key-background);
 }
 
 .calculator__output {
   background-color: var(--screen-background);
-  color: var(--white);
+  color: var(--second-font-color);
   font-size: clamp(1.2rem, calc(56 / var(--desktop-width) * 100vw), 1.75rem);
   text-align: right;
   padding: 35px 30px 25px 30px;
@@ -187,25 +223,25 @@ html {
   min-width: clamp(60px, calc(100 / var(--desktop-width) * 100vw), 100px);
   padding-block: 16px 8px;
 
-  box-shadow: 0 5px 0 0 var(--grayish-orange-shadow);
-  background-color: var(--light-grayish-orange);
-  color: var(--very-dark-grayish-blue);
+  box-shadow: 0 5px 0 0 var(--light-key-background-shadow);
+  background-color: var(--light-key-background);
+  color: var(--main-font-color);
 
   cursor: pointer;
 }
 
 .calculator__button-del,
 .calculator__button-reset {
-  box-shadow: 0 5px 0 0 var(--dark-blue-shadow);
-  background-color: var(--dark-blue);
-  color: var(--light-grayish-orange);
+  box-shadow: 0 5px 0 0 var(--dark-key-background-shadow);
+  background-color: var(--dark-key-background);
+  color: var(--white);
   font-size: 0.7rem;
 }
 
 .calculator__button-equal {
-  box-shadow: 0 5px 0 0 var(--red-shadow);
-  background-color: var(--red);
-  color: var(--light-grayish-orange);
+  box-shadow: 0 5px 0 0 var(--special-key-background-shadow);
+  background-color: var(--special-key-background);
+  color: var(--light-key-background);
 }
 
 .calculator__button-one {
@@ -282,36 +318,36 @@ html {
 
 @media (hover: hover) {
   .calculator__theme-switcher input:checked+label:hover {
-    background-color: var(--red-hover);
+    background-color: var(--special-key-background-hover);
   }
 
   .calculator__button:hover {
-    background-color: var(--white);
+    background-color: var(--light-key-background-hover);
   }
 
   :is(.calculator__button-del, .calculator__button-reset):hover {
-    background-color: var(--dark-blue-hover);
+    background-color: var(--dark-key-background-hover);
   }
 
   .calculator__button-equal:hover {
-    background-color: var(--red-hover);
+    background-color: var(--special-key-background-hover);
   }
 }
 
 @media (hover: none) {
   .calculator__theme-switcher input:checked+label:active {
-    background-color: var(--red-hover);
+    background-color: var(--special-key-background-hover);
   }
 
   .calculator__button:active {
-    background-color: var(--white);
+    background-color: var(--light-key-background-hover);
   }
 
   :is(.calculator__button-del, .calculator__button-reset):active {
-    background-color: var(--dark-blue-hover);
+    background-color: var(--dark-key-background-hover);
   }
 
   .calculator__button-equal:active {
-    background-color: var(--red-hover);
+    background-color: var(--special-key-background-hover);
   }
 }
