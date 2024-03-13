@@ -92,6 +92,7 @@ html {
   font-family: 'League Spartan';
   font-size: var(--font-size);
   font-weight: var(--font-weight);
+  user-select: none;
 }
 
 body {
